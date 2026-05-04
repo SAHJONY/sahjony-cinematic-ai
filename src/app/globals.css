@@ -5,9 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --neon-blue: #00f3ff;
-  --neon-purple: #bc13fe;
-  --neon-green: #0aff0a;
   --deep-space: #0a0a0f;
 }
 
@@ -16,6 +13,30 @@ body {
   color: #ffffff;
   font-family: 'Rajdhani', sans-serif;
   overflow-x: hidden;
+}
+
+/* Rainbow Animation Keyframes */
+@keyframes hue-rotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes rainbow-border {
+  0% { border-color: hsl(0, 100%, 60%); }
+  20% { border-color: hsl(72, 100%, 60%); }
+  40% { border-color: hsl(144, 100%, 60%); }
+  60% { border-color: hsl(216, 100%, 60%); }
+  80% { border-color: hsl(288, 100%, 60%); }
+  100% { border-color: hsl(360, 100%, 60%); }
+}
+
+@keyframes rainbow-glow {
+  0% { box-shadow: 0 0 20px hsl(0, 100%, 60%, 0.5); }
+  20% { box-shadow: 0 0 20px hsl(72, 100%, 60%, 0.5); }
+  40% { box-shadow: 0 0 20px hsl(144, 100%, 60%, 0.5); }
+  60% { box-shadow: 0 0 20px hsl(216, 100%, 60%, 0.5); }
+  80% { box-shadow: 0 0 20px hsl(288, 100%, 60%, 0.5); }
+  100% { box-shadow: 0 0 20px hsl(360, 100%, 60%, 0.5); }
 }
 
 /* Cinematic Scanlines with Noise */
@@ -37,19 +58,25 @@ body {
   pointer-events: none;
   z-index: 50;
   mix-blend-mode: overlay;
+  animation: hue-rotate 20s linear infinite;
 }
 
-/* Enhanced Holographic Glass Effect */
+/* Enhanced Holographic Glass Effect with Rainbow */
 .holo-glass {
   background: rgba(10, 10, 15, 0.6);
   backdrop-filter: blur(25px) saturate(180%) contrast(110%);
-  border: 1px solid rgba(0, 243, 255, 0.15);
+  border: 1px solid transparent;
+  background-image: linear-gradient(rgba(10, 10, 15, 0.6), rgba(10, 10, 15, 0.6)), 
+                    linear-gradient(90deg, hsl(0, 100%, 60%), hsl(60, 100%, 60%), hsl(120, 100%, 60%), hsl(180, 100%, 60%), hsl(240, 100%, 60%), hsl(300, 100%, 60%), hsl(360, 100%, 60%));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   box-shadow: 
-    0 0 30px rgba(0, 243, 255, 0.08),
-    inset 0 0 30px rgba(0, 243, 255, 0.03),
+    0 0 30px rgba(255, 255, 255, 0.08),
+    inset 0 0 30px rgba(255, 255, 255, 0.03),
     0 20px 40px rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
+  animation: rainbow-border 8s linear infinite;
 }
 
 .holo-glass::before {
@@ -62,7 +89,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(0, 243, 255, 0.15),
+    rgba(255, 255, 255, 0.2),
     transparent
   );
   transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,30 +99,26 @@ body {
   left: 100%;
 }
 
-/* Enhanced Neon Glow Text */
+/* Rainbow Neon Glow Text */
 .neon-text {
-  text-shadow: 
-    0 0 10px var(--neon-blue),
-    0 0 20px var(--neon-blue),
-    0 0 40px var(--neon-blue),
-    0 0 80px var(--neon-blue);
-  filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+  background: linear-gradient(90deg, hsl(0, 100%, 60%), hsl(60, 100%, 60%), hsl(120, 100%, 60%), hsl(180, 100%, 60%), hsl(240, 100%, 60%), hsl(300, 100%, 60%), hsl(360, 100%, 60%));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  animation: hue-rotate 4s linear infinite, rainbow-glow 4s linear infinite;
 }
 
-.neon-text-purple {
-  text-shadow: 
-    0 0 10px var(--neon-purple),
-    0 0 20px var(--neon-purple),
-    0 0 40px var(--neon-purple),
-    0 0 80px var(--neon-purple);
-  filter: drop-shadow(0 0 10px rgba(188, 19, 254, 0.5));
-}
-
-/* Enhanced Cinematic Button */
+/* Enhanced Cinematic Button with Rainbow */
 .cinematic-btn {
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, hsl(0, 100%, 50%), hsl(60, 100%, 50%), hsl(120, 100%, 50%), hsl(180, 100%, 50%), hsl(240, 100%, 50%), hsl(300, 100%, 50%), hsl(360, 100%, 50%));
+  background-size: 300% 100%;
+  border: none;
+  animation: hue-rotate 6s linear infinite;
 }
 
 .cinematic-btn::before {
@@ -108,7 +131,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.4),
     transparent
   );
   transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -121,12 +144,12 @@ body {
 .cinematic-btn:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 10px 30px rgba(0, 243, 255, 0.4),
-    0 0 60px rgba(0, 243, 255, 0.2),
+    0 10px 30px rgba(255, 255, 255, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.2),
     inset 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-/* Enhanced Glitch Effect */
+/* Enhanced Glitch Effect with RGB Split */
 .glitch {
   position: relative;
   animation: glitch-text 3s infinite;
@@ -145,14 +168,14 @@ body {
 
 .glitch::before {
   left: 2px;
-  text-shadow: -2px 0 var(--neon-purple);
+  color: hsl(0, 100%, 60%);
   clip: rect(24px, 550px, 90px, 0);
   animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
 }
 
 .glitch::after {
   left: -2px;
-  text-shadow: -2px 0 var(--neon-blue);
+  color: hsl(240, 100%, 60%);
   clip: rect(85px, 550px, 140px, 0);
   animation: glitch-anim-2 3s infinite linear alternate-reverse;
 }
@@ -175,7 +198,7 @@ body {
 
 @keyframes glitch-text {
   0%, 100% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(10deg); }
+  50% { filter: hue-rotate(20deg); }
 }
 
 /* Kinetic Text Animation */
@@ -193,11 +216,11 @@ body {
 /* Pulse Glow */
 @keyframes pulse-glow {
   0%, 100% { 
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     opacity: 1;
   }
   50% { 
-    box-shadow: 0 0 40px rgba(0, 243, 255, 0.6);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
     opacity: 0.8;
   }
 }

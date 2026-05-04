@@ -155,7 +155,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="bg-gradient-to-r from-neon-blue via-neon-purple to-neon-green bg-clip-text text-transparent neon-text glitch" 
+                className="neon-text glitch" 
                 data-text="Cinematic AI"
               >
                 Cinematic AI
