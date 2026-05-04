@@ -20,7 +20,9 @@
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.3.0",
     "gsap": "^3.12.5",
-    "react-intersection-observer": "^9.10.3"
+    "react-intersection-observer": "^9.10.3",
+    "postprocessing": "^6.36.4",
+    "@react-three/postprocessing": "^2.18.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
