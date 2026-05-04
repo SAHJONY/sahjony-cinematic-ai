@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --neon-blue: #00f3ff;
+  --neon-purple: #bc13fe;
+  --neon-green: #0aff0a;
+  --deep-space: #0a0a0f;
+}
+
+body {
+  background: var(--deep-space);
+  color: #ffffff;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Cinematic Scanlines */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Holographic Glass Effect */
+.holo-glass {
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  box-shadow: 
+    0 0 20px rgba(0, 243, 255, 0.1),
+    inset 0 0 20px rgba(0, 243, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 243, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.holo-glass:hover::before {
+  left: 100%;
+}
+
+/* Neon Glow Text */
+.neon-text {
+  text-shadow: 
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue),
+    0 0 40px var(--neon-blue);
+}
+
+.neon-text-purple {
+  text-shadow: 
+    0 0 5px var(--neon-purple),
+    0 0 10px var(--neon-purple),
+    0 0 20px var(--neon-purple),
+    0 0 40px var(--neon-purple);
+}
+
+/* Cinematic Button */
+.cinematic-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cinematic-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 243, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.cinematic-btn:hover::before {
+  left: 100%;
+}
+
+.cinematic-btn:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 243, 255, 0.5),
+    0 0 40px rgba(0, 243, 255, 0.3);
+}
+
+/* Particle Effects */
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--neon-blue);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  75% {
+    transform: translateY(20px) translateX(-10px);
+  }
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 var(--neon-purple);
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 var(--neon-blue);
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(20px, 9999px, 10px, 0); }
+  100% { clip: rect(80px, 9999px, 100px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(100px, 9999px, 10px, 0); }
+  100% { clip: rect(10px, 9999px, 80px, 0); }
+}
